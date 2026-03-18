@@ -1,5 +1,5 @@
 .DS_Store
 .claude/
 image_data.txt
-*.webp
 nihonkai-sakana.md
+.env
