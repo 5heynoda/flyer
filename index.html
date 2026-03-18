@@ -31,7 +31,7 @@
     /* ===== ヘッダー ===== */
     .header {
       background: linear-gradient(135deg, #2e7d32 0%, #43a047 50%, #66bb6a 100%);
-      padding: 6mm 7mm 5mm;
+      padding: 6mm 7mm 6mm;
       position: relative;
       overflow: hidden;
     }
@@ -252,29 +252,25 @@
       flex-shrink: 0;
     }
 
-    /* ===== 代表おすすめ ===== */
+    /* ===== 代表おすすめ（吹き出し） ===== */
     .recommend-section {
       padding: 2mm 7mm;
       background: #fff;
     }
 
     .recommend-card {
-      background: linear-gradient(135deg, #f9fbe7 0%, #f1f8e9 100%);
-      border: 2px solid #c5e1a5;
-      border-radius: 10px;
-      padding: 2.5mm;
       display: flex;
       gap: 3mm;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .recommend-photo {
-      flex: 0 0 24mm;
+      flex: 0 0 18mm;
       text-align: center;
     }
 
     .recommend-photo img {
-      width: 22mm; height: 22mm;
+      width: 18mm; height: 18mm;
       object-fit: cover;
       object-position: center top;
       border-radius: 50%;
@@ -282,40 +278,64 @@
     }
 
     .recommend-photo .name {
-      font-size: 7.5pt;
+      font-size: 6.5pt;
       font-weight: 700;
       color: #2e7d32;
       margin-top: 0.5mm;
     }
 
     .recommend-photo .role {
-      font-size: 6pt;
+      font-size: 5.5pt;
       color: #888;
     }
 
-    .recommend-text { flex: 1; }
+    .recommend-text {
+      flex: 1;
+      position: relative;
+      background: #f1f8e9;
+      border: 1.5px solid #c5e1a5;
+      border-radius: 10px;
+      padding: 2mm 3mm;
+    }
 
-    .recommend-text .quote-mark {
-      font-size: 14pt;
-      color: #a5d6a7;
-      line-height: 0.5;
-      font-family: Georgia, serif;
+    .recommend-text::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 8px;
+      width: 0; height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 6px solid #c5e1a5;
+    }
+
+    .recommend-text::after {
+      content: '';
+      position: absolute;
+      left: -4.5px;
+      top: 8px;
+      width: 0; height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 6px solid #f1f8e9;
     }
 
     .recommend-text p {
       font-size: 7pt;
       line-height: 1.5;
       color: #555;
-      margin: 0.5mm 0;
-      font-style: italic;
+    }
+
+    .recommend-text p strong {
+      color: #2e7d32;
     }
 
     .recommend-text .name-sig {
-      font-size: 7pt;
+      font-size: 6.5pt;
       color: #2e7d32;
       font-weight: 700;
       text-align: right;
-      font-style: normal;
+      margin-top: 0.5mm;
     }
 
     /* ===== 相談内容 ===== */
@@ -544,15 +564,10 @@
           <div class="role">株式会社ジェムス 代表</div>
         </div>
         <div class="recommend-text">
-          <span class="quote-mark">"</span>
           <p>
-            私自身、ひろよさんのサポートのもとで生活習慣と食事を見直し、
-            大きな変化を実感しました。
-            <strong>薬が4種類から3種類に減り、体重も5kg落ちてお腹周りがスッキリ。</strong>
-            一人では絶対に続けられなかったと思いますが、
-            ひろよさんが精神的にも寄り添ってくれたおかげで
-            結果に結びつけることができました。
-            自信をもっておすすめできる個別相談です。
+            私自身、ひろよさんのサポートのもとで生活習慣と食事を見直し、大きな変化を実感。
+            <strong>薬が4種類→3種類に減り、体重も5kg落ちてお腹周りがスッキリ。</strong>
+            一人では続けられなかったと思いますが、精神的にも寄り添ってもらえたおかげで結果に繋がりました。自信をもっておすすめします！
           </p>
           <div class="name-sig">— 篠原（株式会社ジェムス 代表）</div>
         </div>
