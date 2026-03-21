@@ -3,3 +3,5 @@
 image_data.txt
 nihonkai-sakana.md
 .env
+.vercel
+node_modules/

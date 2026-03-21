@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>そのお薬やめれるかも？｜お薬・生活習慣 個別相談</title>
+  <title>お薬の「交通整理」｜無料相談</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap');
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
-      width: 210mm;
-      height: 297mm;
-      margin: 0 auto;
-      background: #f5f5f5;
+      margin: 0;
+      background: #e8e8e8;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px 0;
     }
 
     .flyer {
@@ -26,141 +29,159 @@
       color: #333;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+
+    /* スマホ・小画面対応: 横幅に合わせて縮小表示 */
+    @media screen and (max-width: 800px) {
+      html, body {
+        padding: 0;
+        background: #fff;
+      }
+      .flyer {
+        width: 100vw;
+        height: auto;
+        aspect-ratio: 210 / 297;
+        box-shadow: none;
+        transform-origin: top left;
+      }
     }
 
     /* ===== ヘッダー ===== */
     .header {
-      background: linear-gradient(135deg, #2e7d32 0%, #43a047 50%, #66bb6a 100%);
-      padding: 7mm 7mm 6mm;
+      background: linear-gradient(145deg, #1b5e20 0%, #2e7d32 35%, #388e3c 70%, #43a047 100%);
+      padding: 4.5mm 8mm 5mm;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .header::before {
       content: '';
       position: absolute;
-      top: -30px; right: -30px;
-      width: 180px; height: 180px;
+      top: -50px; right: -50px;
+      width: 200px; height: 200px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
     }
 
-    .header-top {
+    .header-badges {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 3mm;
+      margin-bottom: 1.5mm;
+      position: relative;
+      z-index: 2;
     }
 
-    .subtitle-top {
-      font-family: 'Zen Maru Gothic', sans-serif;
-      color: #fff;
+    .badge-left {
+      color: rgba(255,255,255,0.9);
       font-size: 8pt;
       font-weight: 700;
-      background: rgba(255,255,255,0.2);
-      padding: 1.5mm 4mm;
+      background: rgba(255,255,255,0.15);
+      padding: 1mm 3.5mm;
       border-radius: 20px;
     }
 
-    .free-badge {
+    .badge-right {
+      display: flex;
+      gap: 2mm;
+    }
+
+    .badge-item {
       background: #ffeb3b;
       color: #e65100;
       font-weight: 900;
-      font-size: 9pt;
-      padding: 1.5mm 4mm;
+      font-size: 8.5pt;
+      padding: 1mm 3.5mm;
       border-radius: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    .main-title {
+    .main-catch {
       text-align: center;
       position: relative;
       z-index: 1;
     }
 
-    .main-title h1 {
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 30pt;
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      line-height: 1.2;
-      letter-spacing: 2px;
-    }
-
-    .main-title h1 .highlight {
-      color: #ffeb3b;
-      font-size: 34pt;
-      display: inline-block;
-      position: relative;
-    }
-
-    .main-title h1 .highlight::after {
-      content: '';
-      position: absolute;
-      bottom: 2px; left: 0;
-      width: 100%; height: 3px;
-      background: #ffeb3b;
-      border-radius: 2px;
-    }
-
-    .main-title .sub {
+    .main-catch .pre-copy {
       font-size: 9pt;
-      color: rgba(255,255,255,0.9);
-      margin-top: 2mm;
+      color: rgba(255,255,255,0.85);
       font-weight: 500;
       letter-spacing: 1px;
     }
 
-    /* ===== キャッチコピー ===== */
-    .catch-section {
+    .main-catch h1 {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0.5mm 0 1mm;
+    }
+
+    .main-catch h1 .line1 {
+      font-size: 14pt;
+      color: #fff;
+      display: block;
+    }
+
+    .main-catch h1 .line2 {
+      font-size: 32pt;
+      color: #ffeb3b;
+      display: block;
+      letter-spacing: 3px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .main-catch .sub-copy {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== 導入 ===== */
+    .intro {
       background: linear-gradient(180deg, #e8f5e9 0%, #fff 100%);
-      padding: 2.5mm 7mm;
+      padding: 3mm 10mm;
       text-align: center;
+      flex-shrink: 0;
     }
 
-    .catch-section p {
+    .intro p {
       font-size: 9pt;
-      line-height: 1.6;
+      line-height: 1.55;
       color: #444;
-      font-weight: 500;
     }
 
-    .catch-section .em {
-      color: #2e7d32;
-      font-weight: 700;
-    }
+    .intro .em { color: #2e7d32; font-weight: 700; }
 
-    /* ===== セクション共通 ===== */
-    .section-title {
+    /* ===== 共通 ===== */
+    .sec-title {
       text-align: center;
       font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 12pt;
+      font-size: 11.5pt;
       font-weight: 900;
       color: #2e7d32;
       margin-bottom: 1.5mm;
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 30px; height: 2px;
-      background: #66bb6a;
-      margin: 1mm auto 0;
-      border-radius: 2px;
+    .sec-title .accent {
+      background: linear-gradient(transparent 60%, #c8e6c9 60%);
+      padding: 0 1mm;
     }
 
-    /* ===== こんなお悩み ===== */
-    .worry-section {
-      padding: 2mm 7mm;
+    /* ===== お悩み ===== */
+    .worry {
+      padding: 3mm 8mm 2mm;
       background: #fff;
+      flex-shrink: 0;
     }
 
     .worry-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5mm;
-      margin-top: 1.5mm;
+      gap: 1mm;
+      margin-top: 1mm;
     }
 
     .worry-item {
@@ -168,332 +189,402 @@
       align-items: center;
       gap: 1.5mm;
       background: #fafafa;
-      border: 1px solid #e8e8e8;
-      border-radius: 6px;
-      padding: 1.2mm 2.5mm;
+      border-left: 3px solid #66bb6a;
+      border-radius: 0 5px 5px 0;
+      padding: 1mm 2.5mm;
       font-size: 8.5pt;
       font-weight: 500;
       color: #555;
     }
 
-    .worry-item .icon {
-      font-size: 11pt;
+    .worry-item .check {
+      color: #2e7d32;
+      font-size: 9pt;
       flex-shrink: 0;
     }
 
-    /* ===== 個別相談でできること ===== */
-    .fasting-section {
-      padding: 2mm 7mm;
+    /* ===== できること ===== */
+    .service {
+      padding: 3mm 8mm 2mm;
       background: linear-gradient(180deg, #fff 0%, #f1f8e9 100%);
+      flex-shrink: 0;
     }
 
-    .fasting-content {
+    .service-row {
       display: flex;
       gap: 3mm;
-      align-items: stretch;
-      margin-top: 1.5mm;
+      margin-top: 1mm;
     }
 
-    .fasting-image {
-      flex: 0 0 34mm;
-      border-radius: 8px;
+    .service-image {
+      flex: 0 0 28mm;
+      border-radius: 6px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .fasting-image img {
-      width: 100%;
-      height: 100%;
+    .service-image img {
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .fasting-text { flex: 1; }
+    .service-text { flex: 1; }
 
-    .fasting-text h3 {
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 10pt;
-      color: #2e7d32;
-      margin-bottom: 0.5mm;
-      font-weight: 700;
-    }
-
-    .fasting-text p {
-      font-size: 8pt;
-      line-height: 1.5;
+    .service-text p {
+      font-size: 7.5pt;
+      line-height: 1.4;
       color: #555;
+      margin-bottom: 1mm;
     }
 
-    .merit-list {
+    .sp-list {
       list-style: none;
-      margin-top: 1mm;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8mm;
     }
 
-    .merit-list li {
-      font-size: 8.5pt;
+    .sp-list li {
+      font-size: 8pt;
       font-weight: 600;
       color: #2e7d32;
-      padding: 0.3mm 0;
       display: flex;
       align-items: center;
       gap: 1.5mm;
     }
 
-    .merit-list li::before {
+    .sp-list li::before {
       content: '✓';
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 14px; height: 14px;
+      width: 13px; height: 13px;
       background: #2e7d32;
       color: #fff;
       border-radius: 50%;
-      font-size: 7pt;
+      font-size: 6.5pt;
       flex-shrink: 0;
     }
 
-    /* ===== 代表おすすめ（吹き出し） ===== */
-    .recommend-section {
-      padding: 2mm 7mm;
-      background: #fff;
+    /* ===== 安心の約束 ===== */
+    .trust {
+      padding: 2.5mm 8mm;
+      background: #f1f8e9;
+      flex-shrink: 0;
     }
 
-    .recommend-card {
+    .trust-row {
       display: flex;
       gap: 2mm;
-      align-items: center;
+      align-items: stretch;
     }
 
-    .recommend-photo {
+    .trust-card {
+      flex: 1;
+      background: #fff;
+      border: 1px solid #a5d6a7;
+      border-radius: 6px;
+      padding: 1.5mm 2mm;
+      text-align: center;
+    }
+
+    .trust-card .t-badge {
+      display: inline-block;
+      background: #2e7d32;
+      color: #fff;
+      font-size: 6pt;
+      font-weight: 700;
+      padding: 0.3mm 2mm;
+      border-radius: 8px;
+      margin-bottom: 0.5mm;
+    }
+
+    .trust-card .t-title {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #2e7d32;
+    }
+
+    .trust-card .t-desc {
+      font-size: 6.5pt;
+      color: #888;
+      line-height: 1.3;
+    }
+
+    /* ===== 篠原 体験談 ===== */
+    .story {
+      padding: 3mm 8mm 2mm;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .story-card {
+      display: flex;
+      gap: 3mm;
+      align-items: flex-start;
+    }
+
+    .story-photo {
       flex: 0 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.3mm;
+      gap: 0.5mm;
+      padding-top: 1mm;
     }
 
-    .recommend-photo img {
-      width: 10mm; height: 10mm;
+    .story-photo img {
+      width: 16mm; height: 16mm;
       object-fit: cover;
       object-position: center top;
       border-radius: 50%;
-      border: 2px solid #66bb6a;
+      border: 2px solid #43a047;
     }
 
-    .recommend-photo .name {
-      font-size: 6pt;
+    .story-photo .s-name {
+      font-size: 7pt;
       font-weight: 700;
       color: #2e7d32;
-      line-height: 1;
     }
 
-    .recommend-photo .role {
+    .story-photo .s-role {
       font-size: 5pt;
-      color: #888;
-      line-height: 1;
+      color: #aaa;
+      text-align: center;
+      line-height: 1.2;
     }
 
-    .recommend-text {
+    .story-bubble {
       flex: 1;
       position: relative;
-      background: #f1f8e9;
+      background: #f9fbe7;
       border: 1.5px solid #c5e1a5;
       border-radius: 10px;
       padding: 2mm 3mm;
     }
 
-    .recommend-text::before {
+    .story-bubble::before {
       content: '';
       position: absolute;
-      left: -6px;
-      top: 8px;
-      width: 0; height: 0;
+      left: -6px; top: 12px;
       border-top: 5px solid transparent;
       border-bottom: 5px solid transparent;
       border-right: 6px solid #c5e1a5;
     }
 
-    .recommend-text::after {
+    .story-bubble::after {
       content: '';
       position: absolute;
-      left: -4.5px;
-      top: 8px;
-      width: 0; height: 0;
+      left: -4px; top: 12px;
       border-top: 5px solid transparent;
       border-bottom: 5px solid transparent;
-      border-right: 6px solid #f1f8e9;
+      border-right: 6px solid #f9fbe7;
     }
 
-    .recommend-text p {
-      font-size: 7.5pt;
-      line-height: 1.5;
+    .story-bubble .s-headline {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #2e7d32;
+      margin-bottom: 0.5mm;
+    }
+
+    .story-bubble p {
+      font-size: 7pt;
+      line-height: 1.4;
       color: #555;
     }
 
-    .recommend-text p strong {
-      color: #2e7d32;
+    .result-row {
+      display: flex;
+      gap: 2mm;
+      margin: 1mm 0;
     }
 
-    .recommend-text .name-sig {
-      font-size: 6.5pt;
+    .result-tag {
+      background: #fff;
+      border: 1.5px solid #66bb6a;
+      border-radius: 6px;
+      padding: 0.8mm 2mm;
+      text-align: center;
+      flex: 1;
+    }
+
+    .result-tag .r-num {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 11pt;
+      font-weight: 900;
       color: #2e7d32;
-      font-weight: 700;
-      text-align: right;
+      line-height: 1.2;
+    }
+
+    .result-tag .r-label {
+      font-size: 6pt;
+      color: #888;
+    }
+
+    .story-bubble .note {
+      font-size: 5.5pt;
+      color: #ccc;
       margin-top: 0.5mm;
     }
 
-    /* ===== 相談内容 ===== */
-    .consultation-section {
-      padding: 2mm 7mm;
+    /* ===== 相談案内 ===== */
+    .guide {
+      padding: 2.5mm 8mm 2mm;
       background: linear-gradient(180deg, #fff 0%, #e8f5e9 100%);
+      flex-shrink: 0;
     }
 
-    .consultation-details {
+    .guide-box {
       background: #fff;
       border: 2px solid #a5d6a7;
-      border-radius: 10px;
-      padding: 2mm 3mm;
-      margin-top: 1.5mm;
+      border-radius: 8px;
+      padding: 1.5mm 3.5mm;
+      margin-top: 1mm;
     }
 
-    .detail-grid {
+    .guide-grid {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 1.2mm 3mm;
+      gap: 1mm 2.5mm;
       align-items: center;
     }
 
-    .detail-label {
+    .g-label {
       background: #2e7d32;
       color: #fff;
-      font-size: 7.5pt;
+      font-size: 7pt;
       font-weight: 700;
-      padding: 0.8mm 2.5mm;
-      border-radius: 4px;
+      padding: 0.5mm 2.5mm;
+      border-radius: 3px;
       text-align: center;
-      min-width: 16mm;
+      min-width: 14mm;
     }
 
-    .detail-value {
+    .g-value {
       font-size: 8.5pt;
       font-weight: 500;
       color: #333;
     }
 
-    .detail-value strong {
-      color: #2e7d32;
+    .g-value strong { color: #2e7d32; }
+
+    .g-value .g-sub {
+      font-size: 6.5pt;
+      color: #aaa;
+      font-weight: 400;
     }
 
-    /* ===== 指導者 ===== */
-    .instructor-section {
-      padding: 1.5mm 7mm;
-      background: #fff;
-    }
-
-    .instructor-card {
+    /* ===== 指導担当（コンパクト） ===== */
+    .instructor-line {
+      padding: 2mm 8mm;
+      background: #e8f5e9;
       display: flex;
       align-items: center;
       gap: 3mm;
-      background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
-      border-radius: 8px;
-      padding: 2.5mm 4mm;
+      flex-shrink: 0;
     }
 
-    .instructor-icon {
-      width: 14mm; height: 14mm;
-      background: #66bb6a;
+    .instructor-line .il-icon {
+      width: 10mm; height: 10mm;
+      background: #43a047;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18pt;
+      font-size: 14pt;
       color: #fff;
       flex-shrink: 0;
     }
 
-    .instructor-info h4 {
-      font-family: 'Zen Maru Gothic', sans-serif;
+    .instructor-line .il-text {
+      font-size: 8pt;
+      color: #555;
+    }
+
+    .instructor-line .il-text strong {
       font-size: 10pt;
       color: #2e7d32;
-      font-weight: 700;
+      font-family: 'Zen Maru Gothic', sans-serif;
     }
 
-    .instructor-info .title {
-      font-size: 7pt;
-      color: #888;
-    }
-
-    .instructor-info p {
-      font-size: 7.5pt;
-      color: #555;
-      line-height: 1.4;
+    .instructor-line .il-text .il-sub {
+      font-size: 6.5pt;
+      color: #999;
     }
 
     /* ===== CTA ===== */
-    .cta-section {
-      padding: 2.5mm 7mm;
-      background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+    .cta {
+      padding: 3mm 8mm 2.5mm;
+      background: linear-gradient(145deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
       text-align: center;
-      margin-top: auto;
+      flex-shrink: 0;
     }
 
-    .cta-section h2 {
+    .cta h2 {
       font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 13pt;
+      font-size: 12pt;
       color: #ffeb3b;
       font-weight: 900;
       margin-bottom: 1.5mm;
+      line-height: 1.3;
     }
 
     .cta-button {
       display: inline-block;
       background: #ffeb3b;
-      color: #2e7d32;
+      color: #1b5e20;
       font-size: 11pt;
       font-weight: 900;
       padding: 2mm 10mm;
       border-radius: 30px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
       letter-spacing: 1px;
     }
 
     .cta-note {
-      color: rgba(255,255,255,0.9);
-      font-size: 7pt;
+      color: rgba(255,255,255,0.7);
+      font-size: 6pt;
       margin-top: 1mm;
     }
 
     /* ===== フッター ===== */
     .footer {
-      padding: 1.5mm 7mm;
+      padding: 1mm 8mm;
       background: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-top: 1px solid #e0e0e0;
+      flex-shrink: 0;
     }
 
-    .footer-logo img { height: 6mm; }
+    .footer-logo img { height: 5mm; }
 
     .footer-info {
       text-align: right;
-      font-size: 7pt;
-      color: #888;
-      line-height: 1.5;
+      font-size: 6.5pt;
+      color: #aaa;
+      line-height: 1.4;
     }
 
     .footer-info strong {
       color: #333;
-      font-size: 8pt;
+      font-size: 7.5pt;
     }
 
     @media print {
-      html, body { background: #fff; }
-      .flyer { box-shadow: none; }
-    }
-
-    @media screen {
-      .flyer { box-shadow: 0 0 30px rgba(0,0,0,0.15); }
+      html, body {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+      }
+      .flyer {
+        box-shadow: none;
+        width: 210mm;
+        height: 297mm;
+      }
     }
   </style>
 </head>
@@ -502,120 +593,144 @@
 
     <!-- ヘッダー -->
     <div class="header">
-      <div class="header-top">
-        <span class="subtitle-top">💊 薬局だからできる健康相談</span>
-        <span class="free-badge">✨ 相談無料</span>
+      <div class="header-badges">
+        <span class="badge-left">💊 あなたの健康を再設計</span>
+        <div class="badge-right">
+          <span class="badge-item">相談無料</span>
+          <span class="badge-item">約10分</span>
+        </div>
       </div>
-      <div class="main-title">
+      <div class="main-catch">
+        <p class="pre-copy">「整える」ことから始まる、お薬との新しい付き合い方。</p>
         <h1>
-          そのお薬<span class="highlight">やめれるかも？</span>
+          <span class="line1">お薬の</span>
+          <span class="line2">「交通整理」</span>
         </h1>
-        <p class="sub">〜 生活習慣と食事の見直しで、カラダの内側から変わる 〜</p>
+        <p class="sub-copy">今の治療を大切にしながら、プラスアルファで「できること」を始めませんか？</p>
       </div>
     </div>
 
-    <!-- キャッチコピー -->
-    <div class="catch-section">
+    <!-- 導入 -->
+    <div class="intro">
       <p>
-        「ずっとこの薬を飲み続けるしかない…」そう思っていませんか？<br>
-        <span class="em">生活習慣や食事を見直す</span>ことで体質は変えられます。お薬に頼らない暮らしへの第一歩を、一緒に踏み出しましょう。
+        「ずっとこのお薬を飲み続けるしかない……」そう思っていませんか？<br>
+        <span class="em">生活習慣や食事を見直す</span>ことで、カラダの「土台」から整えていくことができます。
       </p>
     </div>
 
-    <!-- こんなお悩み -->
-    <div class="worry-section">
-      <h2 class="section-title">こんなお悩みありませんか？</h2>
+    <!-- お悩みチェック -->
+    <div class="worry">
+      <h2 class="sec-title">こんな<span class="accent">お悩み</span>ありませんか？</h2>
       <div class="worry-grid">
-        <div class="worry-item"><span class="icon">😔</span>薬の量が増えてきて不安…</div>
-        <div class="worry-item"><span class="icon">😩</span>体がだるくてスッキリしない</div>
-        <div class="worry-item"><span class="icon">😟</span>血圧・血糖値が気になる</div>
-        <div class="worry-item"><span class="icon">🤔</span>食生活を改善したいけど何から？</div>
-        <div class="worry-item"><span class="icon">😣</span>薬に頼らず健康になりたい</div>
-        <div class="worry-item"><span class="icon">💭</span>誰かに相談したいけど相手がいない</div>
+        <div class="worry-item"><span class="check">☑</span>お薬の種類が増えてきて不安</div>
+        <div class="worry-item"><span class="check">☑</span>血圧や血糖値の変化が気になる</div>
+        <div class="worry-item"><span class="check">☑</span>お薬に頼りすぎない体を目指したい</div>
+        <div class="worry-item"><span class="check">☑</span>体がだるくて毎日スッキリしない</div>
+        <div class="worry-item"><span class="check">☑</span>食生活を変えたいけど何から？</div>
+        <div class="worry-item"><span class="check">☑</span>健康のことを気軽に相談したい</div>
       </div>
     </div>
 
-    <!-- 個別相談でできること -->
-    <div class="fasting-section">
-      <h2 class="section-title">個別相談でできること</h2>
-      <div class="fasting-content">
-        <div class="fasting-image">
-          <img src="pharmacy.webp" alt="薬局でのカウンセリング">
+    <!-- できること -->
+    <div class="service">
+      <h2 class="sec-title">お薬の<span class="accent">「交通整理」</span>でできること</h2>
+      <div class="service-row">
+        <div class="service-image">
+          <img src="pharmacy.webp" alt="薬局での相談">
         </div>
-        <div class="fasting-text">
-          <h3>お薬・生活習慣・食事をトータルで見直し</h3>
-          <p>
-            今飲んでいるお薬の状況をお伺いしながら、
-            日々の生活習慣や食事内容を丁寧にヒアリング。
-            お一人おひとりに合った改善プランをご提案します。
-          </p>
-          <ul class="merit-list">
-            <li>お薬の飲み方・量のご相談</li>
-            <li>食事内容の見直しアドバイス</li>
-            <li>生活リズム・運動習慣の改善提案</li>
-            <li>体質改善に向けたサポート</li>
+        <div class="service-text">
+          <p>今のお薬の状況を大切にしながら、生活習慣や食事を丁寧にヒアリング。薬剤師の知見に基づき、あなた専用の「健康再設計プラン」をご提案します。</p>
+          <ul class="sp-list">
+            <li>お薬の役割を整理</li>
+            <li>食事・栄養の見直し</li>
+            <li>生活リズムの改善</li>
+            <li>主治医へのレポート</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- 代表おすすめ -->
-    <div class="recommend-section">
-      <h2 class="section-title">代表 篠原からのメッセージ</h2>
-      <div class="recommend-card">
-        <div class="recommend-photo">
-          <img src="shinohara.png" alt="代表 篠原">
-          <div class="name">篠原</div>
-          <div class="role">株式会社ジェムス 代表</div>
+    <!-- 安心の3つの約束 -->
+    <div class="trust">
+      <div class="trust-row">
+        <div class="trust-card">
+          <div class="t-badge">連 携</div>
+          <div class="t-title">主治医の右腕</div>
+          <div class="t-desc">治療方針を第一に。健康状態を正確にレポートし共有</div>
         </div>
-        <div class="recommend-text">
-          <p>
-            私自身、ひろよさんのサポートのもとで生活習慣と食事を見直し、大きな変化を実感。
-            <strong>薬が4種類→3種類に減り、体重も5kg落ちてお腹周りがスッキリ。</strong>
-            一人では続けられなかったと思いますが、精神的にも寄り添ってもらえたおかげで結果に繋がりました。自信をもっておすすめします！
-          </p>
-          <div class="name-sig">— 篠原（株式会社ジェムス 代表）</div>
+        <div class="trust-card">
+          <div class="t-badge">根 拠</div>
+          <div class="t-title">数値に基づく分析</div>
+          <div class="t-desc">お薬手帳や検査数値を踏まえた客観的なアドバイス</div>
         </div>
-      </div>
-    </div>
-
-    <!-- 相談内容 -->
-    <div class="consultation-section">
-      <h2 class="section-title">個別相談のご案内</h2>
-      <div class="consultation-details">
-        <div class="detail-grid">
-          <span class="detail-label">内 容</span>
-          <span class="detail-value">お薬・生活習慣・食事の <strong>個別相談</strong>（お一人ずつ丁寧に対応）</span>
-          <span class="detail-label">対 象</span>
-          <span class="detail-value">お薬を減らしたい方、体質改善に興味のある方</span>
-          <span class="detail-label">費 用</span>
-          <span class="detail-value"><strong>無料</strong></span>
-          <span class="detail-label">場 所</span>
-          <span class="detail-value">株式会社ジェムス 各店舗（都内・神奈川・千葉 全10店舗）</span>
-          <span class="detail-label">時 間</span>
-          <span class="detail-value">約30〜40分（ご都合に合わせて調整可能）</span>
+        <div class="trust-card">
+          <div class="t-badge">安 全</div>
+          <div class="t-title">無理な変更なし</div>
+          <div class="t-desc">治療の方向性は主治医に委ね体が整うプロセスをサポート</div>
         </div>
       </div>
     </div>
 
-    <!-- 指導者 -->
-    <div class="instructor-section">
-      <div class="instructor-card">
-        <div class="instructor-icon">👩‍⚕️</div>
-        <div class="instructor-info">
-          <div class="title">健康相談 指導担当</div>
-          <h4>HIROYO</h4>
-          <p style="font-size:7pt; color:#888;">株式会社COCOBLANC 代表 ／ 紹介だけでクライアント実績500名以上</p>
-          <p>お一人おひとりの体調やお薬の状況に合わせて、生活習慣・食事の改善プランをご提案いたします。</p>
+    <!-- 篠原の実体験 -->
+    <div class="story">
+      <h2 class="sec-title">薬剤師・<span class="accent">篠原</span>の実体験</h2>
+      <div class="story-card">
+        <div class="story-photo">
+          <img src="shinohara.png" alt="篠原">
+          <div class="s-name">篠原</div>
+          <div class="s-role">株式会社ジェムス<br>代表・薬剤師</div>
         </div>
+        <div class="story-bubble">
+          <div class="s-headline">実は、私自身も「お薬」を飲んでいます。</div>
+          <p>専門知識がある私ですら、お薬だけでは現状維持が精一杯。しかし「食事と生活の見直し」を実践したところ――</p>
+          <div class="result-row">
+            <div class="result-tag">
+              <div class="r-num">−1種類</div>
+              <div class="r-label">主治医の判断で減薬</div>
+            </div>
+            <div class="result-tag">
+              <div class="r-num">−5kg</div>
+              <div class="r-label">わずか1ヶ月で体重減</div>
+            </div>
+          </div>
+          <p>「ずっと飲み続けるしかない」と思っていた私だからこそ、あなたの不安に寄り添い「なりたい姿」を主治医と一緒に支えます。</p>
+          <div class="note">※個人の感想です。効果を保証するものではありません。処方については必ず主治医にご相談ください</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 相談案内 -->
+    <div class="guide">
+      <h2 class="sec-title">お薬の<span class="accent">「交通整理」</span>ご案内</h2>
+      <div class="guide-box">
+        <div class="guide-grid">
+          <span class="g-label">内 容</span>
+          <span class="g-value">お薬の役割を整理 ＋ あなた専用の<strong>改善プラン</strong>をご提案</span>
+          <span class="g-label">対 象</span>
+          <span class="g-value">お薬を減らしたい方・生活習慣を見直したい方</span>
+          <span class="g-label">費 用</span>
+          <span class="g-value"><strong>無料</strong> <span class="g-sub">（お気軽にどうぞ）</span></span>
+          <span class="g-label">場所・時間</span>
+          <span class="g-value">当薬局カウンターにて約<strong>10分</strong> <span class="g-sub">※プライバシー配慮 ／ 別日調整可</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 指導担当（1行コンパクト） -->
+    <div class="instructor-line">
+      <div class="il-icon">👩‍⚕️</div>
+      <div class="il-text">
+        <span class="il-sub">健康再設計 指導担当</span><br>
+        <strong>HIROYO</strong>
+        <span class="il-sub"> ／ 株式会社COCOBLANC 代表 ／ クライアント実績500名以上</span>
       </div>
     </div>
 
     <!-- CTA -->
-    <div class="cta-section">
-      <h2>まずはお気軽にご相談ください！</h2>
+    <div class="cta">
+      <h2>あなたの体の「現在地」を<br>知ることから始めませんか？</h2>
       <div class="cta-button">📞 店頭スタッフにお声がけください</div>
-      <p class="cta-note">※ お薬の中止・変更は必ず医師にご相談ください</p>
+      <p class="cta-note">※お薬の中止・変更は必ず主治医にご相談ください ／ 主治医の治療方針を最優先します</p>
     </div>
 
     <!-- フッター -->
