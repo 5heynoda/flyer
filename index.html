@@ -487,15 +487,16 @@
     }
 
     .instructor-line .il-icon {
-      width: 10mm; height: 10mm;
-      background: #43a047;
+      width: 12mm; height: 12mm;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14pt;
-      color: #fff;
       flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .instructor-line .il-icon img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .instructor-line .il-text {
@@ -718,7 +719,7 @@
 
     <!-- 指導担当（1行コンパクト） -->
     <div class="instructor-line">
-      <div class="il-icon">👩‍⚕️</div>
+      <div class="il-icon"><img src="hiroyo.png" alt="HIROYO"></div>
       <div class="il-text">
         <span class="il-sub">健康再設計 指導担当</span><br>
         <strong>HIROYO</strong>
